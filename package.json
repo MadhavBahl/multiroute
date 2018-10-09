@@ -1,19 +1,17 @@
 {
   "name": "multi-salesman",
-  "version": "1.0.0",
-  "description": "Shortest Path Representation By Implementation Of Genetic Algorithms Parallely on a Shared Memory System using OpenMP",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MadhavBahlMD/Multi-Salesman.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MadhavBahlMD/Multi-Salesman/issues"
-  },
-  "homepage": "https://github.com/MadhavBahlMD/Multi-Salesman#readme"
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
+  }
 }
