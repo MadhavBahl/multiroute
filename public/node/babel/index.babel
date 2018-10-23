@@ -1,0 +1,417 @@
+console.clear();
+const PI = Math.PI;
+const PI2 = PI * 2;
+var staticId = 0;
+
+class Point {
+  constructor({ x, y }) {
+    this.id = generateId();
+    this.x = x;
+    this.y = y;
+    this.connection1 = null;
+    this.connection2 = null;
+  }
+
+  static prox(x1, y1, x2, y2) {
+    return Math.hypot(x2 - x1, y2 - y1);
+  }
+
+  open() {
+    if (this.used()) return false;
+    return this.connection1 ? 'connection2' : 'connection1';
+  }
+
+  connect(id) {
+    let open = this.open();
+    if (open) 
+      this[open] = id;
+    else
+      console.warn('NOT OPEN YET ASSUMING IT IS');
+  }
+
+  used() {
+    return this.connection1 !== null && this.connection2 !== null;
+  }
+
+  relate(points, centerX, centerY) {
+    this.proxC = Point.prox(this.x, this.y, centerX, centerY);
+    this.preference = [];
+    this.preferences = [];
+    // set distance to this point
+    points.forEach(point => {
+      if (point.id !== this.id) {
+        let prox = Point.prox(this.x, this.y, point.x, point.y);
+        // rounding proximity to a vector
+        let vectorSize = 0.0625;
+        let relProx = Math.round(prox / vectorSize) * vectorSize;
+        // radial influence, normalized
+        let rad = Math.atan2((this.y - point.y), (this.x - point.x)) * 180 / PI;
+        let relRad = (rad + 180) / 360;
+        relRad = Math.round(relRad / vectorSize) * vectorSize;
+        let yDist = Math.round((this.y - point.y) / vectorSize) * vectorSize;
+        let xDist = Math.round((this.x - point.x) / vectorSize) * vectorSize;
+        this.preference.push([point.id, relProx, prox, relRad, yDist, xDist]);
+      }
+    });
+    // sort by distance to this, radial preference, SE emphasis
+    this.preferences[0] = this.preference.sort((a, b) => {
+      // relative prox
+      if (a[1] > b[1]) return 1;
+      if (a[1] < b[1]) return -1;
+
+      // relative radial
+      if (a[3] > b[3]) return 1;
+      if (a[3] < b[3]) return -1;
+
+      // y (negative == down)
+      if (a[4] > b[4]) return 1;
+      if (a[4] < b[4]) return -1;
+      
+      // x (negative == right)
+      if (a[5] > b[5]) return 1;
+      if (a[5] > b[5]) return -1;
+
+      // real prox
+      if (a[2] > b[2]) return 1;
+      if (a[2] < b[2]) return -1;
+
+      return 0;
+    });
+    
+    // sort by distance to this, radial ignorance, NW emphasis
+    this.preferences[1] = this.preference.sort((a, b) => {
+      // relative prox
+      if (a[1] > b[1]) return 1;
+      if (a[1] < b[1]) return -1;
+
+      // relative radial
+      if (a[3] > b[3]) return -1;
+      if (a[3] < b[3]) return 1;
+
+      // y (positive == up)
+      if (a[4] > b[4]) return -1;
+      if (a[4] < b[4]) return 1;
+      
+      // x (positive == left)
+      if (a[5] > b[5]) return -1;
+      if (a[5] > b[5]) return 1;
+
+      // real prox
+      if (a[2] > b[2]) return -1;
+      if (a[2] < b[2]) return 1;
+
+      return 0;
+    });
+
+    // just ids
+    this.preference = this.preference.map(p => {
+      return p[0];
+    });
+    this.preferences[0] = this.preferences[0].map(p => {
+      return p[0];
+    });
+    this.preferences[1] = this.preferences[1].map(p => {
+      return p[0];
+    });
+  }
+}
+
+class Group {
+  constructor(count) {
+    this.generatePoints(count);
+  }
+
+  generatePoints(count) {
+    this.points = {};
+    this.pointIds = [];
+    let xs = 0;
+    let ys = 0;
+    for (let i = 0; i < count; i++) {
+      let point = new Point({ x: Math.random(), y: Math.random() });
+      this.points[point.id] = point;
+      this.pointIds.push(point.id);
+      xs += point.x;
+      ys += point.y;
+    }
+    this.x = xs / count;
+    this.y = ys / count;
+    this.relatePoints();
+    this.sortPoints();
+  }
+
+  sortPoints() {
+    this.pointIds = this.pointIds.sort((a, b) => {
+      let apt = this.points[a];
+      let bpt = this.points[b];
+      
+      // prefer real prox
+      if (apt.proxC > bpt.proxC) return -1;
+      if (apt.proxC < bpt.proxC) return 1;
+
+      return 0;
+    });
+  }
+
+  relatePoints() {
+    let arr = this.pointIds.map(id => {
+      return this.points[id];
+    });
+    arr.forEach(point => {
+      point.relate(arr, this.x, this.y);
+    });
+  }
+}
+
+class Connector {
+  constructor() {}
+
+  run({ points, pointIds }) {
+    this.points = points;
+    this.pointIds = pointIds;
+
+    this.path1 = [pointIds[0]];
+    this.path2 = [pointIds[0]];
+
+    return this.loop();
+  }
+
+  loop() {
+    let last1 = this.path1[this.path1.length - 1];
+    let last2 = this.path2[this.path2.length - 1];
+
+    let conn1 = this.processPoint(last1, 0);
+    if (conn1) this.path1.push(conn1);
+
+    let conn2 = this.processPoint(last2, 1);
+    if (conn2) this.path2.push(conn2);
+
+    if ((conn1 && conn2) || conn1 !== conn2) {
+      return this.loop();
+    } else {
+      this.path1.push(this.path2[this.path2.length - 1]);
+      this.path2.push(this.path1[this.path1.length - 2]);
+      return { path1: this.path1, path2: this.path2 };
+    }
+  }
+
+  processPoint(pointId, pref) {
+    let point = this.points[pointId];
+    let prefs = point.preferences[pref];
+    let foundId = null;
+    let prefIdx = 0;
+    while (!foundId && prefIdx < prefs.length) {
+      let prefId = prefs[prefIdx];
+      if (!this.path1.includes(prefId) && !this.path2.includes(prefId)) {
+        foundId = prefId;
+      }
+      prefIdx++;
+    }
+    if (foundId) {
+      point.connect(foundId);
+      this.points[foundId].connect(point.id);
+    }
+    return foundId;
+  }
+}
+
+class Canvas {
+  constructor() {
+    this.element1 = document.querySelector('#cvs1');
+    this.context1 = this.element1.getContext('2d');
+    this.element2 = document.querySelector('#cvs2');
+    this.context2 = this.element2.getContext('2d');
+    this.gutter = 30;
+    this.diameter = this.element1.width;
+    this.switchContext(0);
+  }
+
+  clear() {
+    this.context1.clearRect(0, 0, this.diameter, this.diameter);
+    this.context2.clearRect(0, 0, this.diameter, this.diameter);
+  }
+
+  switchContext(idx) {
+    this.context = [this.context1, this.context2][idx];
+  }
+
+  text(x, y, text, offset = 1) {
+    this.context.textAlign = 'center';
+    this.context.textBaseline = 'middle';
+    let fontSize = 14;
+    let offsetY = (y > 0.5) ? fontSize * (offset * 1.5) : fontSize * (offset * -1.5);
+    this.context.fillStyle = 'white';
+    this.context.font = `${fontSize}px Helvetica`;
+    this.context.fillText(text, this.relative(x), this.relative(y) + offsetY);
+  }
+
+  point(x, y, fill = 'red') {
+    this.context.fillStyle = fill;
+    this.context.beginPath();
+    this.context.arc(this.relative(x), this.relative(y), 4, 0, PI2);
+    this.context.fill();
+  }
+  
+  path(x1, y1, x2, y2, stroke = 'red') {
+    this.context.strokeStyle = stroke;
+    this.context.lineWidth = 2;
+    this.context.beginPath();
+    this.context.moveTo(this.relative(x1), this.relative(y1));
+    this.context.lineTo(this.relative(x2), this.relative(y2));
+    this.context.stroke();
+  }
+  
+  relative(plot) {
+    return plot * (this.diameter - this.gutter * 2) + this.gutter;
+  }
+}
+
+class Drawer {
+  constructor() {
+    this.canvas = new Canvas();
+    this.drawStraight();
+  }
+
+  update(points, pointIds, paths, x, y) {
+    this.x = x;
+    this.y = y;
+    this.speed = 8;
+    this.pointIdx = 0;
+    this.progress = 0;
+    this.points = points;
+    this.pointIds = pointIds;
+    this.pointIdCount = pointIds.length;
+    this.path1 = paths.path1;
+    this.path2 = paths.path2;
+    this.pointCount = paths.path1.length;
+  }
+  
+  drawEach() {
+    let first = this.pointIdx === 0;
+    let idx = this.pointIdx % this.pointIdCount;
+    let pointEnd = (this.progress % this.speed) === 0;
+
+    // clearing the canvases
+    if (idx === 0 && pointEnd) {
+      this.drawn = [];
+      this.canvas.switchContext(1);
+      this.canvas.clear();
+      this.canvas.point(this.x, this.y, 'white');
+      this.pointIds.forEach((pointId) => {
+        let point = this.points[pointId];
+        this.canvas.point(point.x, point.y);
+        // let text = point.id + ' ' + Math.round(point.proxC * 100) / 100;
+        let text = Math.round(point.proxC * 100) / 100;
+        this.canvas.text(point.x, point.y, text);
+      });
+    }
+    this.canvas.switchContext(0);
+
+    let ratio = (this.progress % this.speed) / (this.speed - 1);
+    let point = this.points[this.pointIds[this.pointIdx % this.pointIdCount]];
+    let drawn = [point.id];
+
+    let skipped = 0;
+    [point.connection1, point.connection2].forEach((pointId) => {
+      if (pointId) { 
+        if (this.drawn.includes(pointId)) {
+          skipped++;
+        } else {
+          let conn = this.points[pointId];
+          // drawn.push(pointId);
+          let distX = (point.x - conn.x) * ratio;
+          let distY = (point.y - conn.y) * ratio;
+          let dx = point.x - distX;
+          let dy = point.y - distY;
+          this.canvas.path(point.x, point.y, dx, dy, 'red');
+        }
+      } else if(!point.connection1) {console.log('here')}
+    });
+    
+    if (skipped === 2 && idx+1 !== 0) {
+      this.pointIdx++;
+    } else {
+      this.progress++;
+    }
+
+    if (this.progress % this.speed === 0) {
+      drawn.forEach((id) => { this.drawn.push(id) });
+      this.pointIdx++;
+    }
+    window.requestAnimationFrame(() => {
+      this.drawEach();
+    });
+  }
+
+  drawStraight() {
+    if (this.points) {
+      let first = this.pointIdx === 0;
+      let idx1 = this.pointIdx % this.pointCount;
+      let pointEnd = (this.progress % this.speed) === 0;
+
+      // clearing the canvases
+      if (idx1 === 0 && pointEnd) {
+        this.canvas.switchContext(1);
+        this.canvas.clear();
+        this.path1.forEach((pointId) => {
+          let point = this.points[pointId];
+          this.canvas.point(point.x, point.y, 'red');
+        });
+        this.path2.forEach((pointId) => {
+          let point = this.points[pointId];
+          this.canvas.point(point.x, point.y, 'blue');
+          // this.canvas.text(point.x, point.y, Math.round(point.proxC * 100) / 100);
+          // this.canvas.text(point.x, point.y, point.id);
+        });
+        this.canvas.point(this.x, this.y, 'yellow');
+      }
+      this.canvas.switchContext(0);
+
+      let ratio = (this.progress % this.speed) / (this.speed - 1);
+
+      [this.path1, this.path2].forEach((path, i) => {
+        let idx = this.pointIdx % this.pointCount;
+        let point = this.points[path[idx]];
+        let conn = this.points[path[idx + 1]];
+        if (conn) {
+          let distX = (point.x - conn.x) * ratio;
+          let distY = (point.y - conn.y) * ratio;
+          let dx = point.x - distX;
+          let dy = point.y - distY;
+          let color = ['red', 'blue'][i];
+          this.canvas.path(point.x, point.y, dx, dy, color);
+        }
+      });
+
+
+      this.progress++;
+      if (this.progress % this.speed === 0) {
+        this.pointIdx++;
+      }
+    }
+    window.requestAnimationFrame(() => {
+      this.drawStraight();
+    });
+  }
+}
+
+let $input = document.querySelector('input');
+let group = new Group();
+let connector = new Connector();
+let drawer = new Drawer();
+function run() {
+  let count = parseInt($input.value);
+  group.generatePoints(count);
+  let paths = connector.run(group);
+  drawer.update(group.points, group.pointIds, paths, group.x, group.y);
+}
+run();
+document.body.addEventListener('click', run);
+$input.addEventListener('change', run);
+
+function generateId() {
+  let id = staticId++;
+  if (id < 10) return `000${id}`;
+  if (id < 100) return `00${id}`;
+  if (id < 1000) return `0${id}`;
+  return id.toString();
+}

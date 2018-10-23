@@ -8,7 +8,7 @@ The Travelling Salesman Problem (often called TSP) is a classic algorithmic prob
 
 The travelling salesman problem was defined in the 1800s by the Irish mathematician W. R. Hamilton and by the British mathematician Thomas Kirkman. Hamilton’s Icosian Game was a recreational puzzle based on finding a Hamiltonian cycle.
 
->> A Hamiltonian path is a path in a graph which contains each vertex of the graph exactly once. A Hamiltonian cycle is a Hamiltonian path, which is also a cycle. Knowing whether such a path exists in a graph, as well as finding it is a fundamental problem of graph theory.
+> A Hamiltonian path is a path in a graph which contains each vertex of the graph exactly once. A Hamiltonian cycle is a Hamiltonian path, which is also a cycle. Knowing whether such a path exists in a graph, as well as finding it is a fundamental problem of graph theory.
 
 The Travelling Salesman Problem describes a salesman who must travel between N cities. The order in which he does so is something he does not care about, as long as he visits each once during his trip, and finishes where he was at first. Each city is connected to other close by cities, or nodes, by airplanes, or by road or railway. Each of those links between the cities has one or more weights (or the cost) attached. The cost describes how "difficult" it is to traverse this edge on the graph, and may be given, for example, by the cost of an airplane ticket or train ticket, or perhaps by the length of the edge, or time required to complete the traversal. The salesman wants to keep both the travel costs, as well as the distance he travels as low as possible.
 
@@ -104,7 +104,7 @@ Consider lower bound for 2 as we moved from 1 to 1, we include the edge 1-2 to t
 
 ```md
 Lower bound(2) = 
-     Old lower bound - ((second minimum edge cost of 1 + 
+     Old lower bound - ((second minimum edge cost of 1 +
                          minimum edge cost of 2)/2)
                      + edge cost 1-2)
 ```
