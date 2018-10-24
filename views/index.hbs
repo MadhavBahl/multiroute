@@ -1,223 +1,296 @@
-<!DOCTYPE HTML>
-<!--
-	Big Picture by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html> 
-	<head>
-		<title>Multi Route</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/jquery.poptrox.min.js"></script>
-		<script src="/js/jquery.scrolly.min.js"></script>
-		<script src="/js/jquery.scrollex.min.js"></script>
-		<script src="/js/skel.min.js"></script>
-		<script src="/js/init.js"></script>
-		<noscript>
-			
-			<link rel="stylesheet" href="/css/style.css" />
-			<link rel="stylesheet" href="/css/style-wide.css" />
-			<link rel="stylesheet" href="/css/style-normal.css" />
-			<link rel="stylesheet" href="/css/skel.css" />
-		</noscript>
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 
-		<style>
-			.getStarted {
-				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				box-shadow:inset 0px 1px 0px 0px #ffffff;
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
-				background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-				background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-				background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-				background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-				background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
-				background-color:#ffffff;
-				-moz-border-radius:6px;
-				-webkit-border-radius:6px;
-				border-radius:6px;
-				border:1px solid #dcdcdc;
-				display:inline-block;
-				cursor:pointer;
-				color:#666666 !important;
-				font-family:Arial;
-				font-size:15px;
-				font-weight:bold;
-				padding:5px 28px;
-				text-decoration:none;
-				text-shadow:0px 1px 0px #ffffff;
+  <head>
 
-				margin-top: 40px;
-				width: 200px;
-			}
-			.getStarted:hover {
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
-				background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-				background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-				background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-				background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-				background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
-				background-color:#f6f6f6;
-			}
-			.getStarted:active {
-				position:relative;
-				top:1px;
-			}
-		</style>
-	</head>
-	<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Travelling Salesman Problem">
+    <meta name="author" content="Team-Multiroute">
+    <link rel="shortcut icon" href="img/logo.png">
+    <title>MultiRoute</title>
 
-		<!-- Header -->
-			<header id="header">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-				<!-- Logo -->
-					<h1 id="logo">Multi Route</h1>
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#intro">About</a></li>
-							<li><a href="#one">Features</a></li>
-							<li><a href="#two">Algorithm</a></li>
-							<li><a href="#work">Screenshots</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-					</nav>
+    <!-- Plugin CSS -->
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
-			</header>
+    <!-- Custom styles for this template -->
+    <link href="/css/creative.css" rel="stylesheet">
 
-		<!-- Intro -->
-			<section id="intro" class="main style1 dark fullscreen">
-				<div class="content container 75%">
-					<header>
-						<br><br>
-						<h2>Multi Route</h2>
-					</header>
-					
-					<p>Multi-Route is a web app to solve travelling salesman problem involving branch and bound algorithm design using multi processor design using OpenMP.</p>
+  </head>
 
-					<a href="#" class="getStarted">Get Started</a>
-					<a href="http://madhavbahl.tech/multiroute" target="_blank" class="getStarted">See Document</a>
+  <body id="page-top">
 
-					<footer>
-						<a href="#one" class="button style2 down">More</a>
-					</footer>
-				</div>
-			</section>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">MultiRoute</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Advantages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/tsp">Get Started</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-		<!-- One -->
-			<section id="one" class="main style2 right dark fullscreen">
-				<div class="content box style2">
-					<header>
-						<h2>What I Do</h2>
-					</header>
-					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
-					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
-				</div>
-				<a href="#two" class="button style2 down anchored">Next</a>
-			</section>
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Multi Route</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Cyber Security J-component: This is an implementation of bifid cipher in cloud. <br> <b>Secure Cloud Computing Using Bifid Cipher</b></p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" target="_blank" href="http://madhavbahl.tech/multiroute/">See Docs</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-primary btn-xl js-scroll-trigger" target="_blank" href="/tsp">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-		<!-- Two -->
-			<section id="two" class="main style2 left dark fullscreen">
-				<div class="content box style2">
-					<header>
-						<h2>Who I Am</h2>
-					</header>
-					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
-					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
-				</div>
-				<a href="#work" class="button style2 down anchored">Next</a>
-			</section>
+    <section class="bg-primary" id="about" style="padding-top: 20; padding-bottom: 20;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto text-center">
+            <h2 class="section-heading text-white">About Bifid</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-6">The bifid cipher is a <b>cipher which combines the Polybius square
+with transposition, and uses fractionation to achieve diffusion.</b>
+First, the letters of the message are converted into numbers
+(the number of the row and the number of the column) using
+the Polybius square created on the basis of a keyword.</p>
+            <p class="text-faded mb-6">The
+numbers are written vertically below the message. Then the
+numbers are read off horizontally and grouped into pairs. The
+Polybius square is used again to convert the numbers back into
+letters which is the cipher-text.</p>
+            <p class="text-faded mb-6"><b>The bifid ciphers encrypt a
+message in a way that makes it fairly difficult to decipher
+without knowing the secret.</b> This is because each letter in the
+cipher-text message is dependent upon two letters from the
+plain-text message. As a result, frequency analysis of letters
+becomes much more difficult.</p> <br>
+            <a class="btn btn-light btn-xl js-scroll-trigger" target="_blank" href="https://madhavbahlmd.github.io/Secure-cloud-comuting-using-bifid-cipher/">See Complete Proceedure</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<!-- Work -->
-			<section id="work" class="main style3 primary">
-				<div class="content container">
-					<header>
-						<h2>My Work</h2>
-						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-						Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-						arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
-					</header>
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto text-center">
+            <h2 class="section-heading text-center">Objective</h2>
+            {{!-- <hr class="my-4"> --}}
+            <hr class=" my-4">
+            <p class="text-muted mb-0">Cloud Storage is a service where data is remotely maintained, managed, and backed up. The service allows the users to store files online, so that they can access them from any location via the Internet. In recent days, almost everyone is moving towards cloud storage and cloud computing, According to a recent survey conducted with more than 800 business decision makers and users worldwide, the number of organizations gaining competitive advantage through high cloud adoption has almost doubled in the last few years and by 2017, the public cloud services market is predicted to exceed $244 billion.</p>
+           <br> <p class="text-muted mb-0">The
+numbers are written vertically below the message. Then the
+numbers are read off horizontally and grouped into pairs. The
+Polybius square is used again to convert the numbers back into
+letters which is the cipher-text.</p> <br>
+            <p class="text-muted mb-0">Invented by Felix Blessed Virgin Delastelle (1840 - 1902), though divided microorganism word [Ame05 Kah67] has never been used for any "serious applications, it's become among the foremost widespread passwords "Amateur" cryptographers.</p> <br>
+            {{!-- <a class="btn btn-light btn-xl js-scroll-trigger" target="_blank" href="https://madhavbahlmd.github.io/Secure-cloud-comuting-using-bifid-cipher/">See Complete Proceedure</a> --}}
+          </div>
+        </div>
+      </div>
+      
+    </section>
 
-					<!-- Lightbox Gallery  -->
-						<div class="container 75% gallery">
-							<div class="row 0% images">
-								<div class="6u"><a href="images/fulls/01.jpg" class="image fit from-left"><img src="/images/thumbs/01.jpg" title="The Anonymous Red" alt="" /></a></div>
-								<div class="6u"><a href="images/fulls/02.jpg" class="image fit from-right"><img src="/images/thumbs/02.jpg" title="Airchitecture II" alt="" /></a></div>
-							</div>
-							<div class="row 0% images">
-								<div class="6u"><a href="images/fulls/03.jpg" class="image fit from-left"><img src="/images/thumbs/03.jpg" title="Air Lounge" alt="" /></a></div>
-								<div class="6u"><a href="images/fulls/04.jpg" class="image fit from-right"><img src="/images/thumbs/04.jpg" title="Carry on" alt="" /></a></div>
-							</div>
-							<div class="row 0% images">
-								<div class="6u"><a href="images/fulls/05.jpg" class="image fit from-left"><img src="/images/thumbs/05.jpg" title="The sparkling shell" alt="" /></a></div>
-								<div class="6u"><a href="images/fulls/06.jpg" class="image fit from-right"><img src="/images/thumbs/06.jpg" title="Bent IX" alt="" /></a></div>
-							</div>
-						</div>
+    <section class="p-0" id="portfolio">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    Confidentiality And Authentication
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    Faster And Smoother
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    High availability and Secure
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    Reliable And Flexible
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    Well Structured
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  {{!-- <div class="project-category text-faded">
+                    Category
+                  </div> --}}
+                  <div class="project-name">
+                    Automated Cipher Text
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				</div>
-			</section>
+    <section class="bg-dark text-white">
+      <div class="container text-center">
+        <h2 class="mb-4">Liked the project, fork on GitHub</h2>
+        <a class="btn btn-light btn-xl sr-button" target="_blank" href="https://github.com/MadhavBahlMD/Secure-cloud-comuting-using-bifid-cipher">Download Now!</a>
+      </div>
+    </section>
 
-		<!-- Contact -->
-			<section id="contact" class="main style3 secondary">
-				<div class="content container">
-					<header>
-						<h2>Say Hello.</h2>
-						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.</p>
-					</header>
-					<div class="box container 75%">
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Let's Get In Touch!</h2>
+            <hr class="my-4">
+            <p class="mb-5">Dont hesitate to send us an email in case of any query or feedback</p>
+          </div>
+        </div>
+        <div class="row">
+            <form action="/sendMail" style="width: 100%;" method="POST">
+                <div id="mobile30" class="text-center col-xs-12 col-sm-6 ">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="name" name="name" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" name="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" name="message" rows="5" id="message"></textarea>
+                    </div>
+                    <button type="submit" id="sendMailBTN" class="btn btn-dark btn-xl sr-button">Submit</button>
+                </div>
+            </form>
 
-					<!-- Contact Form -->
-							<form method="post" action="#">
-								<div class="row 50%">
-									<div class="6u"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="6u"><input type="email" name="email" placeholder="Email" /></div>
-								</div>
-								<div class="row 50%">
-									<div class="12u"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
-								</div>
-								<div class="row">
-									<div class="12u">
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
+          {{!-- <div class="col-lg-4 ml-auto text-center">
+            <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+            <p></p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+            <p>
+              <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+            </p>
+          </div> --}}
+        </div>
+      </div>
+    </section>
 
-					</div>
-				</div>
-			</section>
+    <section id="footer">
+        <div style="width: 100%;">
+            <div class="text-center">
+                <h5>Project made with <i class="fas fa-heart"></i> by Team Bifid</h5>
+            </div>
+        </div>
+    </section>
 
-		<!-- Footer -->
-			<footer id="footer">
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
-				<!-- Icons -->
-					<ul class="actions">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					</ul>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-				<!-- Menu -->
-					<ul class="menu">
-						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
 
-			</footer>
+  </body>
 
-	</body>
 </html>
