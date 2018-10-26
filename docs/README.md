@@ -18,6 +18,22 @@ Branch and bound (BB, B&B, or BnB) is an algorithm design paradigm for discrete 
 
 **Hence, Branch and Bound algorithm design can be implemented in parallel processing design**
 
+## How To Run
+
+```js
+npm install
+npm start
+Go to localhost:8000
+```
+
+[!image](./screenshots/1.png)
+[!image](./screenshots/2.png)
+[!image](./screenshots/3.png)
+[!image](./screenshots/4.png)
+[!image](./screenshots/5.png)
+[!image](./screenshots/6.png)
+[!image](./screenshots/7.png)
+
 ## Travelling Salesman Problem using Branch And Bound
 
 Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible tour that visits every city exactly once and returns to the starting point.
