@@ -26,13 +26,13 @@ npm start
 Go to localhost:8000
 ```
 
-[!image](./screenshots/1.png)
-[!image](./screenshots/2.png)
-[!image](./screenshots/3.png)
-[!image](./screenshots/4.png)
-[!image](./screenshots/5.png)
-[!image](./screenshots/6.png)
-[!image](./screenshots/7.png)
+![image](./screenshots/1.png)
+![image](./screenshots/2.png)
+![image](./screenshots/3.png)
+![image](./screenshots/4.png)
+![image](./screenshots/5.png)
+![image](./screenshots/6.png)
+![image](./screenshots/7.png)
 
 ## Travelling Salesman Problem using Branch And Bound
 
