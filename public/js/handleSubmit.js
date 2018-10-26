@@ -38,7 +38,7 @@ $('#searchBtn').click((event) => {
     layouter.layout();
 
     /* draw the graph using the RaphaelJS draw implementation */
-    var renderer = new Graph.Renderer.Raphael('canvas', g, 600, 400);
+    var renderer = new Graph.Renderer.Raphael('canvas', g, 900, 700);
     renderer.draw();
 
     redraw = function() {
