@@ -26,13 +26,13 @@ npm start
 Go to localhost:8000
 ```
 
-[!image](./screenshots/1.png)
-[!image](./screenshots/2.png)
-[!image](./screenshots/3.png)
-[!image](./screenshots/4.png)
-[!image](./screenshots/5.png)
-[!image](./screenshots/6.png)
-[!image](./screenshots/7.png)
+![image](./screenshots/1.png)
+![image](./screenshots/2.png)
+![image](./screenshots/3.png)
+![image](./screenshots/4.png)
+![image](./screenshots/5.png)
+![image](./screenshots/6.png)
+![image](./screenshots/7.png)
 
 ## Travelling Salesman Problem using Branch And Bound
 
@@ -132,3 +132,4 @@ The worst case complexity of Branch and Bound remains same as that of the Brute 
 ### References
 
 1. [http://lcm.csa.iisc.ernet.in/dsa/node187.html](http://lcm.csa.iisc.ernet.in/dsa/node187.html)
+2. [TSP Branch and bound By @abhishek510 (Abhishek Dwivedi)](https://github.com/abhishek510/tsp_openmp/blob/master/tsp_openmp.c)
