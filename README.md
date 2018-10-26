@@ -158,3 +158,4 @@ The worst case complexity of Branch and Bound remains same as that of the Brute 
 ### References
 
 1. [http://lcm.csa.iisc.ernet.in/dsa/node187.html](http://lcm.csa.iisc.ernet.in/dsa/node187.html)
+2. [TSP Branch and bound By @abhishek510 (Abhishek Dwivedi)](https://github.com/abhishek510/tsp_openmp/blob/master/tsp_openmp.c)
