@@ -155,7 +155,13 @@ Lower bound(2) =
 
 The worst case complexity of Branch and Bound remains same as that of the Brute Force clearly because in worst case, we may never get a chance to prune a node. Whereas, in practice it performs very well depending on the different instance of the TSP. The complexity also depends on the choice of the bounding function as they are the ones deciding how many nodes to be pruned.
 
+## Special Thanks and Acknowledgement
+
+Shoutout to the amazing developer [@abhishek510](https://github.com/abhishek510/) for creating the solution to Travelling salesmans problem using OpenMP. Here is the repository: [TSP Branch and bound](https://github.com/abhishek510/tsp_openmp/blob/master/tsp_openmp.c)
+
 ### References
 
 1. [http://lcm.csa.iisc.ernet.in/dsa/node187.html](http://lcm.csa.iisc.ernet.in/dsa/node187.html)
-2. [TSP Branch and bound By @abhishek510 (Abhishek Dwivedi)](https://github.com/abhishek510/tsp_openmp/blob/master/tsp_openmp.c)
+2. [Geeks For Geeks Branch and Bound](https://www.geeksforgeeks.org/basic/branch-and-bound/)
+3. [Geeks For Geeks Travelling Salesan Problem (using branch and bound)](https://www.geeksforgeeks.org/traveling-salesman-problem-using-branch-and-bound-2/)
+4. [TSP Branch and bound By @abhishek510 (Abhishek Dwivedi)](https://github.com/abhishek510/tsp_openmp/blob/master/tsp_openmp.c)

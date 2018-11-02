@@ -4,7 +4,6 @@
 #include <omp.h>
 #include <string.h>
 
-//Serial code for branch and bound for tsp has been taken from geeksforgeeks
 
 int N;
 int *final_path;
